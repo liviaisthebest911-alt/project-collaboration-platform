@@ -1,0 +1,22 @@
+spring:
+  application:
+    name: project-collab-backend
+  profiles:
+    # Use the "dev" profile unless SPRING_PROFILES_ACTIVE says otherwise
+    active: ${SPRING_PROFILES_ACTIVE:dev}
+  jpa:
+    open-in-view: false
+    hibernate:
+      # The schema is created by the SQL scripts in /database, not by Hibernate
+      ddl-auto: none
+
+server:
+  port: ${SERVER_PORT:8080}
+
+app:
+  jwt:
+    # No default on purpose: the app must not start with a guessable secret
+    secret: ${JWT_SECRET}
+    expiration-ms: ${JWT_EXPIRATION_MS:86400000}
+  cors:
+    allowed-origin: ${CORS_ALLOWED_ORIGIN:http://localhost:5173}
